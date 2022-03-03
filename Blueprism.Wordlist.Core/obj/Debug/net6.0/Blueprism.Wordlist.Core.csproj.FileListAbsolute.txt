@@ -1,0 +1,12 @@
+C:\Users\fredd\source\repos\Blueprism.Wordlist\Blueprism.Wordlist.Core\bin\Debug\net6.0\Blueprism.Wordlist.Core.deps.json
+C:\Users\fredd\source\repos\Blueprism.Wordlist\Blueprism.Wordlist.Core\bin\Debug\net6.0\Blueprism.Wordlist.Core.dll
+C:\Users\fredd\source\repos\Blueprism.Wordlist\Blueprism.Wordlist.Core\bin\Debug\net6.0\Blueprism.Wordlist.Core.pdb
+C:\Users\fredd\source\repos\Blueprism.Wordlist\Blueprism.Wordlist.Core\obj\Debug\net6.0\Blueprism.Wordlist.Core.csproj.AssemblyReference.cache
+C:\Users\fredd\source\repos\Blueprism.Wordlist\Blueprism.Wordlist.Core\obj\Debug\net6.0\Blueprism.Wordlist.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fredd\source\repos\Blueprism.Wordlist\Blueprism.Wordlist.Core\obj\Debug\net6.0\Blueprism.Wordlist.Core.AssemblyInfoInputs.cache
+C:\Users\fredd\source\repos\Blueprism.Wordlist\Blueprism.Wordlist.Core\obj\Debug\net6.0\Blueprism.Wordlist.Core.AssemblyInfo.cs
+C:\Users\fredd\source\repos\Blueprism.Wordlist\Blueprism.Wordlist.Core\obj\Debug\net6.0\Blueprism.Wordlist.Core.csproj.CoreCompileInputs.cache
+C:\Users\fredd\source\repos\Blueprism.Wordlist\Blueprism.Wordlist.Core\obj\Debug\net6.0\Blueprism.Wordlist.Core.dll
+C:\Users\fredd\source\repos\Blueprism.Wordlist\Blueprism.Wordlist.Core\obj\Debug\net6.0\refint\Blueprism.Wordlist.Core.dll
+C:\Users\fredd\source\repos\Blueprism.Wordlist\Blueprism.Wordlist.Core\obj\Debug\net6.0\Blueprism.Wordlist.Core.pdb
+C:\Users\fredd\source\repos\Blueprism.Wordlist\Blueprism.Wordlist.Core\obj\Debug\net6.0\ref\Blueprism.Wordlist.Core.dll
