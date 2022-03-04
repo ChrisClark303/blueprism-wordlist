@@ -1,52 +1,8 @@
-# Prerequisites
-*.d
-
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+﻿/Blueprism.Wordlist.Core/bin/Debug/net6.0
+/Blueprism.Wordlist.Core/obj/Debug/net6.0/*
+/Blueprism.Wordlist.Runner/bin/Debug/net6.0
+/Blueprism.Wordlist.Runner/obj/Debug/net6.0/ref
+/Blueprism.Wordlist.Runner/obj/Debug/net6.0/refint
+/Blueprism.WordList.Tests/bin/Debug/net6.0/*
+/Blueprism.Wordlist.Runner/obj/Debug/net6.0/*
+/Blueprism.WordList.Tests/obj/Debug/net6.0/*

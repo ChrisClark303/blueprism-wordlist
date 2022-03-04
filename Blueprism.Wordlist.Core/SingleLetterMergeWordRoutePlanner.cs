@@ -11,18 +11,23 @@
         /// </summary>
         public string[] PlanRouteBetweenWords(string[] wordList, string startWord, string endWord)
         {
-            var wordRoute = MergeWords(wordList, endWord, startWord.ToCharArray());
+            var wordRoute = MergeWords(wordList, endWord.ToLower(), startWord.ToLower().ToCharArray());
             return wordRoute.ToArray();
         }
 
         private IEnumerable<string> MergeWords(string[] wordList, string endWord, char[] startWordChars)
         {
+            //TODO : Probably replace with a for loop
             int charToReplace = startWordChars.GetUpperBound(0);
             string mergedStartWord;
             yield return new string(startWordChars); //TODO : Maybe yield at the start of the loop, and then again once the loop terminates
             do
             {
                 mergedStartWord = MergeCharacterAtPos(endWord, startWordChars, charToReplace);
+                if (!wordList.Contains(mergedStartWord))
+                {
+                    bool x = false; //TODO : This needs to raise an exception
+                }
                 charToReplace--;
                 yield return mergedStartWord;
             }

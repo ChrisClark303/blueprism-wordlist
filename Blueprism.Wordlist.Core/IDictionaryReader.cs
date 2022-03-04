@@ -19,6 +19,7 @@
             var dictContents = repository.GetDictionaryWordList();
 
             return dictContents.Where(w => w.Length == 4)
+                .Select(w => w.ToLower())
                 .ToArray();
         }
     }
