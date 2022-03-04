@@ -41,4 +41,22 @@
         }
     }
 
+    public class IncrementalWordRoutePlanner : IWordRoutePlanner
+    {
+        public string[] PlanRouteBetweenWords(string[] wordList, string startWord, string endWord)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class WordMatcher
+    {
+        public string[] GetMatchingWords(string[] wordList, string word)
+        {
+            return wordList.Where(w => w.ToCharArray().Intersect(word.ToCharArray()).Count() == 3)
+                .ToArray();
+        }
+
+
+    }
 }

@@ -34,6 +34,22 @@ namespace Blueprism.WordList.Tests
             Assert.AreEqual(4, fourLetterWords.Length);
             Assert.AreEqual(4, fourLetterWords.Intersect(new[] { "Alps", "Alva", "Ames", "Amos" }).Count());
         }
+    }
 
+    public class WordMatcherTests
+    {
+        [Test]
+        public void GetMatchingWords()
+        {
+            var wordList = new[]
+                {
+                    "Spin", "Spit", "Spot", "Span", "Spat", "Spar", "Slap", "Slip", "Skin"
+                };
+
+            var wordMatcher = new WordMatcher();
+            var matching = wordMatcher.GetMatchingWords(wordList, "Spin");
+
+            Assert.AreEqual(3, matching.Intersect(new[] { "Spit", "Span", "Skin" }).Count());
+        }
     }
 }
