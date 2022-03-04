@@ -7,16 +7,16 @@
 
     public class DictionaryReader : IDictionaryReader
     {
-        private readonly IFileRepository repository;
+        private readonly IWordRepository repository;
 
-        public DictionaryReader(IFileRepository repository)
+        public DictionaryReader(IWordRepository repository)
         {
             this.repository = repository;
         }                
 
         public string[] GetFourLetterWords()
         {
-            var dictContents = repository.GetDictionaryContents();
+            var dictContents = repository.GetDictionaryWordList();
 
             return dictContents.Where(w => w.Length == 4)
                 .ToArray();

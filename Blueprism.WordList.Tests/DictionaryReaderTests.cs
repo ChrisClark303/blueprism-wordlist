@@ -10,19 +10,19 @@ namespace Blueprism.WordList.Tests
         [Test]
         public void DictionaryReader_GetFourLetterWords_CallsFileRepository_GetDictionaryContents()
         {
-            var fileRepository = new Mock<IFileRepository>();
+            var fileRepository = new Mock<IWordRepository>();
             var reader = new DictionaryReader(fileRepository.Object);
 
             reader.GetFourLetterWords();
 
-            fileRepository.Verify(fr => fr.GetDictionaryContents());
+            fileRepository.Verify(fr => fr.GetDictionaryWordList());
         }
 
         [Test]
         public void DictionaryReader_ReturnsOnly_FourLetterWordsFromDictionaryContents()
         {
-            var fileRepository = new Mock<IFileRepository>();
-            fileRepository.Setup(fr => fr.GetDictionaryContents())
+            var fileRepository = new Mock<IWordRepository>();
+            fileRepository.Setup(fr => fr.GetDictionaryWordList())
                 .Returns(new []
                 {
                     "Alps", "Alsatian", "Alsop", "Altair", "Alton", "Alva", "Alvarez", "Alvin", "Amadeus", "Amarillo", "Amazon", "Amelia", "Amerada", "America", "American", "Americana", "Americanism", "Ames", "Ameslan", "Amharic", "Amherst", "Amman", "Ammerman", "Amoco", "Amos"
