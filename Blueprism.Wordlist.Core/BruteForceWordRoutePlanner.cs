@@ -34,7 +34,8 @@
             else
             {
                 //maybe do this as a Select returning a set of Tasks, or WordMatchers?
-                foreach (var nextStep in nextSteps)
+                var orderedNextSteps = nextSteps.OrderByDescending(m => m.CharacterMatchCount(endWord)).ToArray();
+                foreach (var nextStep in orderedNextSteps)
                 {
                     var newPath = new List<string>(currentPath) { nextStep };
                     var path = NextStep(wordList, nextStep, endWord, newPath);
