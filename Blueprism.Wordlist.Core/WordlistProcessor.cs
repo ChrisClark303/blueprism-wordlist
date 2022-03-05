@@ -16,6 +16,7 @@
         public string[] CalculatePathFromStartToEndWords(string startWord, string endWord)
         {
             //grab words from list
+            //TODO : This should probably use the length of start or end to work out num of characters
             var words = _dictionaryReader.GetFourLetterWords();
             var wordRoute = _routePlanner.PlanRouteBetweenWords(words, startWord, endWord);
             _repository.SavePathFromStartToEndWords(wordRoute);

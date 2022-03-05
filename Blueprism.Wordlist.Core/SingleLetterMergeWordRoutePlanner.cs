@@ -1,6 +1,6 @@
 ﻿namespace Blueprism.Wordlist.Core
 {
-    
+
     public class SingleLetterMergeWordRoutePlanner : IWordRoutePlanner
     {
         /// <summary>
@@ -23,6 +23,7 @@
             yield return new string(startWordChars); //TODO : Maybe yield at the start of the loop, and then again once the loop terminates
             do
             {
+                //TODO : Check if the letter at this pos is already the same
                 mergedStartWord = MergeCharacterAtPos(endWord, startWordChars, charToReplace);
                 if (!wordList.Contains(mergedStartWord))
                 {
@@ -39,24 +40,5 @@
             targetCharacters[charToReplace] = sourceWord[charToReplace];
             return new string(targetCharacters);
         }
-    }
-
-    public class IncrementalWordRoutePlanner : IWordRoutePlanner
-    {
-        public string[] PlanRouteBetweenWords(string[] wordList, string startWord, string endWord)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class WordMatcher
-    {
-        public string[] GetMatchingWords(string[] wordList, string word)
-        {
-            return wordList.Where(w => w.ToCharArray().Intersect(word.ToCharArray()).Count() == 3)
-                .ToArray();
-        }
-
-
     }
 }
