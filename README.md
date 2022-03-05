@@ -1,6 +1,6 @@
 # Word List
 
-This is a coding challenge to find a route from word A to word B by changing only a single letter at a time. All intermediate words should exist in a supplied dictionary. The path betwee the two words should be the shortest.
+This is a coding challenge to find a route from word A to word B by changing only a single letter at a time. All intermediate words should exist in a supplied dictionary. The path between the two words should be the shortest.
 
 While this is only a sample console app, I've still used standard practices such as DI, TDD, single responsibility/separation of concerns etc to demonstrate how I'd normally approach a solution. For example, the role of interacting with the file system is separated into a class implementing IWordRepository. A separate object (IDictionaryReader) then uses this interface to load the entire list from the file, but adds extra functionality to restrict the list to only words with the appropriate number of letters. It would therefore be trivial to change the data source to a different file format, a web-based API etc, while still maintaining the functionality provided by IDictionaryReader.
 
