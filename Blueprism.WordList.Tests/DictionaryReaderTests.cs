@@ -1,7 +1,6 @@
 using Blueprism.Wordlist.Core;
 using Moq;
 using NUnit.Framework;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Blueprism.WordList.Tests
@@ -51,39 +50,6 @@ namespace Blueprism.WordList.Tests
 
             Assert.AreEqual(4, fourLetterWords.Length);
             Assert.AreEqual(4, fourLetterWords.Intersect(new[] { "alps", "alva", "ames", "amos" }).Count());
-        }
-    }
-
-    public class WordMatcherTests
-    {
-        [Test]
-        public void GetMatchingWords_FindsAllWords_DifferingByOneLetter()
-        {
-            var wordList = new[]
-                {
-                    "Spin", "Spit", "Spot", "Span", "Spat", "Spar", "Slap", "Slip", "Skin"
-                };
-
-//            var wordMatcher = new WordMatcher();
-            var matching = WordMatcher.GetMatchingWords(wordList, "Spin");
-
-            Assert.AreEqual(3, matching.Count());
-            Assert.AreEqual(3, matching.Intersect(new[] { "Spit", "Span", "Skin" }).Count());
-        }
-
-        [Test]
-        public void GetMatchingWords_FindsAllWords_NotInPathAlready()
-        {
-            var wordList = new[]
-                {
-                    "Spin", "Spit", "Spot", "Span", "Spat", "Spar", "Slap", "Slip", "Skin"
-                };
-
-            //var wordMatcher = new WordMatcher();
-            var matching = WordMatcher.GetMatchingWords(wordList, "Spin", new List<string>(new[] { "Skin" }));
-
-            Assert.AreEqual(2, matching.Count());
-            Assert.AreEqual(2, matching.Intersect(new[] { "Spit", "Span"}).Count());
         }
     }
 }

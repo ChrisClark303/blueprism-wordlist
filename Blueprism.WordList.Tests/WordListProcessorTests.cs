@@ -1,6 +1,7 @@
 ﻿using Blueprism.Wordlist.Core;
 using Moq;
 using NUnit.Framework;
+using System;
 
 namespace Blueprism.WordList.Tests
 {
@@ -10,20 +11,53 @@ namespace Blueprism.WordList.Tests
             Mock<IWordRoutePlanner>? routePlanner = null,
             Mock<IWordRepository>? repository = null)
         {
-            return new WordlistProcessor((dictionaryReader ?? new Mock<IDictionaryReader>()).Object, 
+            return new WordlistProcessor((dictionaryReader ?? CreateDictionaryReader()).Object, 
                 (routePlanner ?? new Mock<IWordRoutePlanner>()).Object, 
                 (repository ?? new Mock<IWordRepository>()).Object);
+        }
+
+        private static Mock<IDictionaryReader> CreateDictionaryReader()
+        {
+            var mockReader = new Mock<IDictionaryReader>();
+            mockReader.Setup(x => x.GetFourLetterWords()).Returns(new[] { "start", "end" });
+            return mockReader;
         }
 
         [Test]
         public void CalculatePathFromStartToEndWords_Calls_DictionaryReader_GetFourLetterWords()
         {
-            var reader = new Mock<IDictionaryReader>();
+            var reader = CreateDictionaryReader();
             var processor = CreateWordProcessor(reader);
 
-            processor.CalculatePathFromStartToEndWords("", "");
+            processor.CalculatePathFromStartToEndWords("start", "end");
 
             reader.Verify(r => r.GetFourLetterWords());
+        }
+
+        [Test]
+        public void CalculatePathFromStartToEndWords_StartWordNotInWordList_ThrowsArgumentOutOfRangeException()
+        {
+            var reader = new Mock<IDictionaryReader>();
+            var routePlanner = new Mock<IWordRoutePlanner>();
+            var processor = CreateWordProcessor(reader, routePlanner);
+
+            reader.Setup(r => r.GetFourLetterWords())
+                .Returns(new[] { "spin", "spit", "spat", "spot", "span" });
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => processor.CalculatePathFromStartToEndWords("spun", "span"));
+        }
+
+        [Test]
+        public void CalculatePathFromStartToEndWords_EndWordNotInWordList_ThrowsArgumentOutOfRangeException()
+        {
+            var reader = new Mock<IDictionaryReader>();
+            var routePlanner = new Mock<IWordRoutePlanner>();
+            var processor = CreateWordProcessor(reader, routePlanner);
+
+            reader.Setup(r => r.GetFourLetterWords())
+                .Returns(new[] { "spin", "spit", "spat", "spot", "span" });
+
+            Assert.Throws<ArgumentOutOfRangeException>( () => processor.CalculatePathFromStartToEndWords("spin", "spun"));
         }
 
         [Test]
@@ -33,7 +67,7 @@ namespace Blueprism.WordList.Tests
             var routePlanner = new Mock<IWordRoutePlanner>();
             var processor = CreateWordProcessor(reader, routePlanner);
 
-            string[] words = new[] { "TEST" };
+            string[] words = new[] { "start", "end" };
             reader.Setup(r => r.GetFourLetterWords())
                 .Returns(words);
 

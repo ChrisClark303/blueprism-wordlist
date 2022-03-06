@@ -17,6 +17,10 @@
         {
             //TODO : This should probably use the length of start or end to work out num of characters
             var words = _dictionaryReader.GetFourLetterWords();
+            if (!words.Contains(startWord) || !words.Contains(endWord))
+            {
+                throw new ArgumentOutOfRangeException("StartWord and Endword must exist in the word list.");
+            }
             var wordRoute = _routePlanner.PlanRouteBetweenWords(words, startWord, endWord);
             _repository.SavePathFromStartToEndWords(wordRoute);
 
