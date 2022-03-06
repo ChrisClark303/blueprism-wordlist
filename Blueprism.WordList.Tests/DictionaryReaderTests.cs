@@ -64,8 +64,8 @@ namespace Blueprism.WordList.Tests
                     "Spin", "Spit", "Spot", "Span", "Spat", "Spar", "Slap", "Slip", "Skin"
                 };
 
-            var wordMatcher = new WordMatcher();
-            var matching = wordMatcher.GetMatchingWords(wordList, "Spin");
+//            var wordMatcher = new WordMatcher();
+            var matching = WordMatcher.GetMatchingWords(wordList, "Spin");
 
             Assert.AreEqual(3, matching.Count());
             Assert.AreEqual(3, matching.Intersect(new[] { "Spit", "Span", "Skin" }).Count());
@@ -79,8 +79,8 @@ namespace Blueprism.WordList.Tests
                     "Spin", "Spit", "Spot", "Span", "Spat", "Spar", "Slap", "Slip", "Skin"
                 };
 
-            var wordMatcher = new WordMatcher();
-            var matching = wordMatcher.GetMatchingWords(wordList, "Spin", new List<string>(new[] { "Skin" }));
+            //var wordMatcher = new WordMatcher();
+            var matching = WordMatcher.GetMatchingWords(wordList, "Spin", new List<string>(new[] { "Skin" }));
 
             Assert.AreEqual(2, matching.Count());
             Assert.AreEqual(2, matching.Intersect(new[] { "Spit", "Span"}).Count());

@@ -2,13 +2,17 @@
 {
     public class BruteForceWordRoutePlanner : IWordRoutePlanner
     {
-        private int? shortestRoute;
-        private void RouteFound(int count)
+        private int? _shortestRoute;
+
+        //Currently this is threadsafe, since all operations in this class occur on a single thread.        
+        //If extra threads were introduced to allow some processing to occur in parallel, some kind of
+        //synchronization mechanism would be required here.
+        private void RouteFound(int routeLength)
         {
-            if (shortestRoute == null) shortestRoute = count;
+            if (_shortestRoute == null) _shortestRoute = routeLength;
             else
             {
-                shortestRoute = Math.Min(shortestRoute.GetValueOrDefault(), count);
+                _shortestRoute = Math.Min(_shortestRoute.GetValueOrDefault(), routeLength);
             }
         }
 
@@ -18,26 +22,27 @@
             return matches.OrderBy(m => m.Length).First();
         }
 
-        //TODO : Maybe this should just take the WordMatcher?
         private IEnumerable<string[]> NextStep(string[] wordList, string startWord, string endWord, List<string> currentPath)
         {
-            if (shortestRoute != null && currentPath.Count > shortestRoute) yield break; 
-            var wordMatcher = new WordMatcher();
-            var nextSteps = wordMatcher.GetMatchingWords(wordList, startWord, currentPath);
+            if (PathIsLongerThanShortestRoute(currentPath))
+            {
+                yield break;
+            }
+            var nextSteps = WordMatcher.GetMatchingWords(wordList, startWord, currentPath);
             if (nextSteps.Any(s => s.Equals(endWord)))
             {
-                RouteFound(currentPath.Count + 1); //currently this is threadsafe
-                //TODO : set shortest route field, terminate any paths that are longer
-                yield return new List<string>(currentPath) { endWord }
+                RouteFound(currentPath.Count + 1);
+                yield return currentPath.CopyAndAdd(endWord)
                     .ToArray();
             }
             else
             {
-                //maybe do this as a Select returning a set of Tasks, or WordMatchers?
-                var orderedNextSteps = nextSteps.OrderByDescending(m => m.CharacterMatchCount(endWord)).ToArray();
+                //TODO : maybe do this as a Select returning a set of Tasks, or WordMatchers?
+                //probably a Select just returns P
+                var orderedNextSteps = OrderWordsByCommonalityWithTarget(nextSteps, endWord);
                 foreach (var nextStep in orderedNextSteps)
                 {
-                    var newPath = new List<string>(currentPath) { nextStep };
+                    var newPath = currentPath.CopyAndAdd(nextStep);
                     var path = NextStep(wordList, nextStep, endWord, newPath);
                     foreach (var p in path)
                     {
@@ -46,17 +51,33 @@
                 }
             }
         }
+
+        private bool PathIsLongerThanShortestRoute(List<string> path)
+        {
+            return _shortestRoute != null && path.Count > _shortestRoute;
+        }
+
+        private string[] OrderWordsByCommonalityWithTarget(string[] words, string target)
+        {
+            return words.OrderByDescending(m => m.CharacterMatchCount(target)).ToArray();
+        }
     }
 
-    public class WordMatcher
+    public static class WordMatcher
     {
-        //TODO : Maybe construct this with the word to start with, to make it a state machine
-
-        public string[] GetMatchingWords(string[] wordList, string word, List<string>? currentPath = null)
+        public static string[] GetMatchingWords(string[] wordList, string word, List<string>? currentPath = null)
         {
             return wordList.Where(w => w != word && w.CharacterMatchCount(word) == 3)
                 .Where(w => currentPath == null || !currentPath.Contains(w))
                 .ToArray();
+        }
+    }
+
+    public static class ListExtensions
+    {
+        public static List<T> CopyAndAdd<T>(this List<T> list, T toAdd)
+        {
+            return new List<T>(list) { toAdd };
         }
     }
 }
