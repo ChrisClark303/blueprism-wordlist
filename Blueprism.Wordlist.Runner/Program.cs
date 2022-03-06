@@ -11,7 +11,8 @@ var resultsFileName = args[3];
 var serviceProvider = new ServiceCollection()
     .AddSingleton<IWordRepository>(new WordRepository(dictionaryFileName, resultsFileName))
     .AddSingleton<IDictionaryReader, DictionaryReader>()
-    .AddSingleton<IWordRoutePlanner, SingleLetterMergeWordRoutePlanner>()
+    //.AddSingleton<IWordRoutePlanner, SingleLetterMergeWordRoutePlanner>()
+    .AddSingleton<IWordRoutePlanner, BruteForceWordRoutePlanner>()
     .AddSingleton<IWordlistProcessor, WordlistProcessor>()
     .BuildServiceProvider();
 

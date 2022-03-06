@@ -15,7 +15,7 @@
 
         public string[] CalculatePathFromStartToEndWords(string startWord, string endWord)
         {
-            //TODO : This should probably use the length of start or end to work out num of characters
+            //TODO : This could be changed to use the length of start or end to work out num of characters
             var words = _dictionaryReader.GetFourLetterWords();
             if (!words.Contains(startWord) || !words.Contains(endWord))
             {
