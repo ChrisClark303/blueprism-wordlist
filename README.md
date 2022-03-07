@@ -13,3 +13,10 @@ If these two assumptions are met, this offers a very quick mechanism; the number
 
 For more complex cases where no assumptions can be made, there is a "brute force" approach that walks a path from the source word to the target by finding all words in the dictionary that differ by a single letter. This process is repeated recursively until the path either ends in the target word or else runs out of matches. The path with the least number of steps is then the winner. 
 
+While this process should find any path between start and end, no matter how many times each character must change to get there, it is dumb and slow, as the number of paths to explore multiplies quuite quickly.  After getting the tests working and ensuring it worked in practice, I made two tweaks to improve performance:
+
+- Paths are explored in order of the number of characters they already share with the end word. This hopefully implies a shorter path to the end word.
+- The shortest route to the end word is tracked as the search progresses; any searches that go over this length are terminated as even if successful they will not yield the shortest route.
+
+The solution is currently a recursive algorithm that takes a word, finds all other words that differ by a single character, and then calls itself for each of those words. Because of this recursive nature, this operates on a single-threaded basis; to speed things up, it might be possible to encapsulate each path into individual objects and potentially process them in parallel - an actor framework could be useful here.
+
