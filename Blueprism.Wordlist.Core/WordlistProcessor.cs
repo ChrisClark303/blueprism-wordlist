@@ -17,7 +17,7 @@
         {
             //TODO : This could be changed to use the length of start or end to work out num of characters
             var words = _dictionaryReader.GetFourLetterWords();
-            if (!words.Contains(startWord) || !words.Contains(endWord))
+            if (!words.Contains(startWord.ToLower()) || !words.Contains(endWord.ToLower()))
             {
                 throw new ArgumentOutOfRangeException("StartWord and Endword must exist in the word list.");
             }

@@ -15,4 +15,10 @@
     <ProjectReference Include="..\Blueprism.Wordlist.Core\Blueprism.Wordlist.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="words-english.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
