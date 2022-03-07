@@ -10,7 +10,7 @@ There are a few TODOs left in the code to document some of the changes I conside
 
 The solution was test driven; however, not every individual item has it's own test class. For example, the extension methods were split out from the code they are used in at later stages in the development, either for readability or to eliminate duplication. In these cases, they are covered as part of the tests on consuming code.
 
-I didn't follow any other documented way of handling this; I was aware that there would be pre-existing strategies, but I was having fun trying to come up with my own, so I didn't look! I did also consider looking to see if there were any APIs that were provided for me that I could hook into from a WordRoutePlanner implementation....
+I didn't follow any other documented way of handling this; I was aware that there would be pre-existing strategies, but I was having fun trying to come up with my own, so I didn't look! I did, however, consider looking to see if there were any web-based APIs that were already provided that I could hook into from a WordRoutePlanner implementation....
 
 
 ## Implementation 1 - SingleLetterMergeWordRoutePlanner
