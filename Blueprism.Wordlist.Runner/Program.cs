@@ -11,17 +11,24 @@ var resultsFileName = args[3];
 var serviceProvider = new ServiceCollection()
     .AddSingleton<IWordRepository>(new WordRepository(dictionaryFileName, resultsFileName))
     .AddSingleton<IDictionaryReader, DictionaryReader>()
-    //.AddSingleton<IWordRoutePlanner, SingleLetterMergeWordRoutePlanner>()
-    .AddSingleton<IWordRoutePlanner, BruteForceWordRoutePlanner>()
+    .AddSingleton<IWordRoutePlanner, SingleLetterMergeWordRoutePlanner>()
+    //.AddSingleton<IWordRoutePlanner, BruteForceWordRoutePlanner>()
     .AddSingleton<IWordlistProcessor, WordlistProcessor>()
     .BuildServiceProvider();
 
 var processor = serviceProvider.GetService<IWordlistProcessor>();
 var wordRoute = processor!.CalculatePathFromStartToEndWords(startWord, endWord);
 
-foreach (var word in wordRoute)
+if (wordRoute.Any())
 {
-    Console.WriteLine(word);
+    foreach (var word in wordRoute)
+    {
+        Console.WriteLine(word);
+    }
+}
+else
+{
+    Console.WriteLine($"No route between {startWord} and {endWord} could be found.");
 }
 
 Console.ReadLine();

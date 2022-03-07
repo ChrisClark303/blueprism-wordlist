@@ -1,14 +1,14 @@
 ﻿namespace Blueprism.Wordlist.Core
 {
 
+    /// <summary>
+    /// Transforms startWord into endWord by incrementally changing one letter in the start word with one in
+    /// the same position in the endword, ensuring that at each stage the resulting word exists in the 
+    /// word list.
+    /// Passes the example given in the spec, but not much else, I'd wager.
+    /// </summary>
     public class SingleLetterMergeWordRoutePlanner : IWordRoutePlanner
     {
-        /// <summary>
-        /// Transforms startWord into endWord by incrementally changing one letter in the start word with one in
-        /// the same position in the endword, ensuring that at each stage the resulting word exists in the 
-        /// word list.
-        /// Passes the example given in the spec, but not much else, I'd wager.
-        /// </summary>
         public string[] PlanRouteBetweenWords(string[] wordList, string startWord, string endWord)
         {
             try

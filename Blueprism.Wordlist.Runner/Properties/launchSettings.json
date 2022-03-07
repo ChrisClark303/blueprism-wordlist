@@ -2,7 +2,7 @@
   "profiles": {
     "Blueprism.Wordlist.Runner": {
       "commandName": "Project",
-      "commandLineArgs": "\"words-english.txt\" Spin Join \"words-result.txt\""
+      "commandLineArgs": "\"words-english.txt\" Spin Spot \"words-result.txt\""
     }
   }
 }

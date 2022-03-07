@@ -89,7 +89,7 @@ namespace Blueprism.WordList.Tests
 
             processor.CalculatePathFromStartToEndWords("start", "end");
 
-            repository.Verify(repo => repo.SavePathFromStartToEndWords(words));
+            repository.Verify(repo => repo.SaveWordRoute(words));
         }
     }
 }

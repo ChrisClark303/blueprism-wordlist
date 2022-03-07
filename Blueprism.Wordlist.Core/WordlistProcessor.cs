@@ -22,7 +22,7 @@
                 throw new ArgumentOutOfRangeException("StartWord and Endword must exist in the word list.");
             }
             var wordRoute = _routePlanner.PlanRouteBetweenWords(words, startWord, endWord);
-            _repository.SavePathFromStartToEndWords(wordRoute);
+            _repository.SaveWordRoute(wordRoute);
 
             return wordRoute;
         }

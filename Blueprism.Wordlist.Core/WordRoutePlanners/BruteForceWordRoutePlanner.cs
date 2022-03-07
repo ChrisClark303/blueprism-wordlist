@@ -1,5 +1,15 @@
 ﻿namespace Blueprism.Wordlist.Core
 {
+    /// <summary>
+    /// A slow, bruteforce approach that explores all routes from the start word by recursively finding words in the dictionary that differ
+    /// by a single letter. 
+    /// There is not a massive amount of intelligence here, if there is a route between start and end words then it will arrive at it 
+    /// purely through a "thousand monkeys at a thousand typewriters" style approach.
+    /// Unpromising avenues are discouraged in two ways: firstly, paths that share the most number of characters with the end word are prioritised.
+    /// Secondly, once a path is found, any path currently being explored that is longer is terminated, since, even if it succeeds, it won't produce a 
+    /// more efficient path.
+    /// The benefit of this approach is that will find ANY path to the target, no matter how indirect.
+    /// </summary>
     public class BruteForceWordRoutePlanner : IWordRoutePlanner
     {
         private int? _shortestRoute;
