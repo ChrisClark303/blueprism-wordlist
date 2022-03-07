@@ -65,7 +65,7 @@
             return _shortestRoute != null && path.Count > _shortestRoute;
         }
 
-        private string[] OrderWordsByCommonalityWithTarget(string[] words, string target)
+        private static string[] OrderWordsByCommonalityWithTarget(string[] words, string target)
         {
             return words.OrderByDescending(m => m.CharacterMatchCount(target)).ToArray();
         }
